@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.scss";
+import Input from "./components/Input";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Clip Planet Extension</h1>
-      </header>
+      <Input />
     </div>
   );
 }
