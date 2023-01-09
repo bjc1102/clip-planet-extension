@@ -5,8 +5,10 @@ import "./index.scss";
 
 const Popup = () => {
   const [currentURL, setCurrentURL] = useState<string>();
+  const [hasKey, setHasKey] = useState("");
 
   useEffect(() => {
+    if (!hasKey) return;
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       setCurrentURL(tabs[0].url);
     });
