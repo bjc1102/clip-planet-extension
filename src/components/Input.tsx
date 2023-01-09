@@ -1,14 +1,25 @@
-import React from "react";
-import "./input.scss";
+import React, { useEffect } from "react";
+import "./Input.scss";
 
-const Input = () => {
+interface InputProps {
+  handleAPI_KEY: (key: string) => void;
+}
+
+const Input = ({ handleAPI_KEY }: InputProps) => {
   const [key, setKey] = React.useState("");
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setKey(e.currentTarget.value);
   }
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(key);
+    chrome.storage.local
+      .set({ API_KEY: key })
+      .then(() => {
+        handleAPI_KEY(key);
+      })
+      .catch(() => {
+        alert("저장 중 에러가 발생했습니다.");
+      });
   }
 
   return (
