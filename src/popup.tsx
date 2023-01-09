@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Input from "./components/Input";
 import "./index.scss";
 
 const Popup = () => {
@@ -11,13 +12,7 @@ const Popup = () => {
     });
   }, []);
 
-  return (
-    <>
-      <ul style={{ minWidth: "700px" }}>
-        <li>Current URL: {currentURL}</li>
-      </ul>
-    </>
-  );
+  return <Input />;
 };
 
 ReactDOM.render(

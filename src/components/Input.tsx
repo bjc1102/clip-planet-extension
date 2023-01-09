@@ -6,19 +6,16 @@ const Input = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setKey(e.currentTarget.value);
 
-  console.log(key);
-
   return (
     <>
       <h1 className="form__title">API Key를 입력해주세요</h1>
-      <div className="form__group field">
+      <div className="form__group">
         <input
           type="input"
           onChange={onChange}
           className="form__field"
           placeholder="API Key"
-          name="api key"
-          id="api key"
+          name="ApiKey"
           required
         />
         <label className="form__label">API Key</label>
