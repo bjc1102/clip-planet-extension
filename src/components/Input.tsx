@@ -1,31 +1,44 @@
-import React from "react";
-import "./input.scss";
+import React, { useEffect } from "react";
+import "./Input.scss";
 
-const Input = () => {
+interface InputProps {
+  handleAPI_KEY: (key: string) => void;
+}
+
+const Input = ({ handleAPI_KEY }: InputProps) => {
   const [key, setKey] = React.useState("");
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setKey(e.currentTarget.value);
-
-  console.log(key);
+  }
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    chrome.storage.local
+      .set({ API_KEY: key })
+      .then(() => {
+        handleAPI_KEY(key);
+      })
+      .catch(() => {
+        alert("저장 중 에러가 발생했습니다.");
+      });
+  }
 
   return (
     <>
       <h1 className="form__title">API Key를 입력해주세요</h1>
-      <div className="form__group field">
+      <form onSubmit={handleSubmit} className="form__group">
         <input
           type="input"
-          onChange={onChange}
+          onChange={handleChange}
           className="form__field"
           placeholder="API Key"
-          name="api key"
-          id="api key"
+          name="ApiKey"
           required
         />
         <label className="form__label">API Key</label>
-      </div>
-      <button disabled={!key.length} className="btn__submit">
-        저장하기
-      </button>
+        <button type="submit" disabled={!key.length} className="btn__submit">
+          저장하기
+        </button>
+      </form>
     </>
   );
 };
