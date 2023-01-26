@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Home from "./components/Home";
-import Input from "./components/Input";
+import Home from "./components/Main/Home";
+import Input from "./components/Input/Input";
 import "./index.scss";
 
 const Popup = () => {
