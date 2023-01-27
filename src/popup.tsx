@@ -14,9 +14,10 @@ const Popup = () => {
   }
 
   useEffect(() => {
-    // chrome.storage.local.get("API_KEY").then((response) => {
-    //   setAPI_Key(response.API_KEY);
-    // });
+    chrome.storage.local.get("API_KEY").then((response) => {
+      // handleAPI_KEY(response.API_KEY);
+      handleAPI_KEY("L7aZys3T2F+QYpz9ULDEPecJuheoPiwIK32o94R2ceE=");
+    });
   }, []);
 
   if (!API_KEY) return <Input handleAPI_KEY={handleAPI_KEY} />;

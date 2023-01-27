@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import validUrl from "valid-url";
-import KeyButton from "../KeyButton";
 import "./index.scss";
+import PlanetIcon from "../assets/PlanetIcon";
 import AlertIcon from "../assets/AlertIcon";
 
 interface MainProps {
@@ -29,6 +29,15 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
     });
   };
 
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:5000/api/sites/set/extension/clip", {
+        api_key: API_KEY,
+        siteURL: currentTab.currentUrl,
+      })
+      .then((response) => console.log(response));
+  };
+
   React.useEffect(() => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       setCurrentTab({
@@ -37,30 +46,36 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
         favicon: tabs[0].favIconUrl ?? "",
       });
     });
-    //   axios
-    //     .post("http://localhost:5000/api/sites/set/extension/clip", {
-    //       api_key: API_KEY,
-    //       siteURL: url,
-    //     })
-    //     .then((response) => console.log(response));
   }, []);
+
   if (!currentTab.currentUrl)
-    return <h1 className="error__text">올바른 사이트 주소가 아닙니다.</h1>;
+    return (
+      <>
+        <div className="icon_wrapper">
+          <PlanetIcon />
+        </div>
+        <h1 className="error_text">현재 주소 형식이 올바르지 않습니다.</h1>
+      </>
+    );
 
   return (
     <>
-      <div onClick={deleteAPI_KEY} className="alert__wrapper">
-        <KeyButton />
+      <div onClick={deleteAPI_KEY} className="alert_wrapper">
+        <AlertIcon />
       </div>
-      <div className="tab__content">
+      <div className="tab_content">
         {validUrl.isWebUri(currentTab.favicon) ? (
           <img src={currentTab.favicon} />
         ) : (
-          <AlertIcon />
+          <div className="icon_wrapper">
+            <PlanetIcon />
+          </div>
         )}
         <h3>{currentTab.title}</h3>
         <div>
-          <button className="tab__content_save">클립하기</button>
+          <button onClick={handleSubmit} className="save_button">
+            클립하기
+          </button>
         </div>
       </div>
     </>
