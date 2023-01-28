@@ -6,16 +6,13 @@ import AlertIcon from "../assets/AlertIcon";
 import { baseURL } from "../../constants/default";
 
 import "./index.scss";
+import useAsync from "../../hooks/useAsync";
+import CurrentTab from "../../types/tab";
+import createClip from "./queries/createClip";
 
 interface MainProps {
   API_KEY: string;
   handleAPI_KEY: (key: string) => void;
-}
-
-interface CurrentTab {
-  title: string;
-  currentUrl: string;
-  favicon: string;
 }
 
 const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
@@ -24,29 +21,15 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
     currentUrl: "",
     favicon: "",
   });
+  const [state, refetch] = useAsync<CurrentTab>({
+    callback: createClip(API_KEY),
+    mutate: true,
+  });
 
   const deleteAPI_KEY = () => {
     chrome.storage.local.remove("API_KEY").then(() => {
       handleAPI_KEY("");
     });
-  };
-
-  const handleSubmit = async () => {
-    const result = await axios.post(`${baseURL}/set/extension/clip`, {
-      api_key: API_KEY,
-      siteURL: currentTab.currentUrl,
-    });
-
-    return result;
-  };
-
-  const createClip = async (siteURL: string) => {
-    const result = await axios.post(`${baseURL}/set/extension/clip`, {
-      api_key: API_KEY,
-      siteURL: siteURL,
-    });
-
-    return result;
   };
 
   React.useEffect(() => {
@@ -87,7 +70,7 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
         )}
         <h3>{currentTab.title}</h3>
         <div>
-          <button onClick={handleSubmit} className="save_button">
+          <button onClick={() => refetch} className="save_button">
             클립하기
           </button>
         </div>

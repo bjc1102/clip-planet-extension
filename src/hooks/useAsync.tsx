@@ -2,12 +2,13 @@ import { AxiosResponse } from "axios";
 import { useEffect, useReducer } from "react";
 import { ApiStatusReducer } from "./reducer/ApiReducer";
 
-interface AsyncProps {
-  callback: <T, P>(param?: P) => Promise<AxiosResponse<T, any>>;
-  deps: [];
+interface AsyncProps<T> {
+  callback: (param?: any) => Promise<T>;
+  deps?: [];
+  mutate: boolean;
 }
 
-const useAsync = function ({ callback, deps = [] }: AsyncProps) {
+const useAsync = function <T>({ callback, deps = [], mutate }: AsyncProps<T>) {
   const [state, dispatch] = useReducer(ApiStatusReducer, {
     loading: false,
     data: null,
@@ -25,7 +26,7 @@ const useAsync = function ({ callback, deps = [] }: AsyncProps) {
   };
 
   useEffect(() => {
-    fetchData();
+    if (!mutate) fetchData();
   }, deps);
 
   return [state, fetchData];
