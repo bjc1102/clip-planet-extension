@@ -31,13 +31,22 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
     });
   };
 
-  const handleSubmit = () => {
-    axios
-      .post(`${baseURL}/set/extension/clip`, {
-        api_key: API_KEY,
-        siteURL: currentTab.currentUrl,
-      })
-      .then((response) => console.log(response));
+  const handleSubmit = async () => {
+    const result = await axios.post(`${baseURL}/set/extension/clip`, {
+      api_key: API_KEY,
+      siteURL: currentTab.currentUrl,
+    });
+
+    return result;
+  };
+
+  const createClip = async (siteURL: string) => {
+    const result = await axios.post(`${baseURL}/set/extension/clip`, {
+      api_key: API_KEY,
+      siteURL: siteURL,
+    });
+
+    return result;
   };
 
   React.useEffect(() => {
