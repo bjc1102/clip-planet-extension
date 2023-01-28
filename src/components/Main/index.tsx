@@ -1,14 +1,14 @@
 import React from "react";
-import axios from "axios";
 import validUrl from "valid-url";
 import PlanetIcon from "../assets/PlanetIcon";
 import AlertIcon from "../assets/AlertIcon";
-import { baseURL } from "../../constants/default";
 
-import "./index.scss";
 import useAsync from "../../hooks/useAsync";
 import CurrentTab from "../../types/tab";
 import createClip from "./queries/createClip";
+
+import "./index.scss";
+import ClipSubmitButton from "../ClipSubmitButton";
 
 interface MainProps {
   API_KEY: string;
@@ -21,9 +21,10 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
     currentUrl: "",
     favicon: "",
   });
-  const [state, refetch] = useAsync<CurrentTab>({
-    callback: createClip(API_KEY),
-    mutate: true,
+  const { state, refetch } = useAsync<CurrentTab>({
+    callback: createClip(API_KEY, currentTab.currentUrl),
+    deps: [],
+    skip: true,
   });
 
   const deleteAPI_KEY = () => {
@@ -58,7 +59,7 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
         <div className="icon_wrapper">
           <AlertIcon />
         </div>
-        <span>API KEY 삭제하기</span>
+        <span>API KEY 삭제</span>
       </div>
       <div className="tab_content">
         {validUrl.isWebUri(currentTab.favicon) ? (
@@ -70,9 +71,7 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
         )}
         <h3>{currentTab.title}</h3>
         <div>
-          <button onClick={() => refetch} className="save_button">
-            클립하기
-          </button>
+          <ClipSubmitButton ApiState={state} handleSubmit={refetch} />
         </div>
       </div>
     </>

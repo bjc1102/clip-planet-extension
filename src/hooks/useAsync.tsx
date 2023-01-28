@@ -5,10 +5,10 @@ import { ApiStatusReducer } from "./reducer/ApiReducer";
 interface AsyncProps<T> {
   callback: (param?: any) => Promise<T>;
   deps?: [];
-  mutate: boolean;
+  skip: boolean;
 }
 
-const useAsync = function <T>({ callback, deps = [], mutate }: AsyncProps<T>) {
+const useAsync = function <T>({ callback, deps = [], skip }: AsyncProps<T>) {
   const [state, dispatch] = useReducer(ApiStatusReducer, {
     loading: false,
     data: null,
@@ -26,10 +26,10 @@ const useAsync = function <T>({ callback, deps = [], mutate }: AsyncProps<T>) {
   };
 
   useEffect(() => {
-    if (!mutate) fetchData();
+    if (!skip) fetchData();
   }, deps);
 
-  return [state, fetchData];
+  return { state, refetch: fetchData };
 };
 
 export default useAsync;
