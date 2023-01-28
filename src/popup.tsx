@@ -5,9 +5,7 @@ import Input from "./components/Input";
 import "./index.scss";
 
 const Popup = () => {
-  const [API_KEY, setAPI_Key] = useState(
-    "L7aZys3T2F+QYpz9ULDEPecJuheoPiwIK32o94R2ceE="
-  );
+  const [API_KEY, setAPI_Key] = useState("");
 
   function handleAPI_KEY(key: string) {
     setAPI_Key(key);

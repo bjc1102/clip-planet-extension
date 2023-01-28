@@ -65,16 +65,25 @@
 }
 
 .alert_wrapper {
-  width: 30px;
-  height: 30px;
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
   top: 25px;
   right: 25px;
-  svg {
-    transition: all 0.25s ease;
-    cursor: pointer;
-    &:hover {
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    span {
+      color: #991b1b;
+    }
+    svg {
       stroke: #991b1b;
     }
+  }
+  span {
+    display: block;
+    color: #ef4444;
   }
 }

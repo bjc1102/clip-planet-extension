@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
 import validUrl from "valid-url";
-import "./index.scss";
 import PlanetIcon from "../assets/PlanetIcon";
 import AlertIcon from "../assets/AlertIcon";
+import { baseURL } from "../../constants/default";
+
+import "./index.scss";
 
 interface MainProps {
   API_KEY: string;
@@ -31,7 +33,7 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:5000/api/sites/set/extension/clip", {
+      .post(`${baseURL}/set/extension/clip`, {
         api_key: API_KEY,
         siteURL: currentTab.currentUrl,
       })
@@ -61,7 +63,10 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
   return (
     <>
       <div onClick={deleteAPI_KEY} className="alert_wrapper">
-        <AlertIcon />
+        <div className="icon_wrapper">
+          <AlertIcon />
+        </div>
+        <span>API KEY 삭제하기</span>
       </div>
       <div className="tab_content">
         {validUrl.isWebUri(currentTab.favicon) ? (
