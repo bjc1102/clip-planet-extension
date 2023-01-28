@@ -17,7 +17,8 @@ const ClipSubmitButton = ({
   if (ApiState.error)
     return (
       <span className="status error">
-        {ApiState.error.response.data.message}
+        {ApiState.error?.response?.data?.message ??
+          "네트워크 에러가 발생했습니다"}
       </span>
     );
   if (ApiState.data)
