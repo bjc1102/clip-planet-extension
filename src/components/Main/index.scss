@@ -1,0 +1,89 @@
+@import "../../index.scss";
+
+.error_text {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+  color: white;
+}
+
+.icon_wrapper {
+  width: 24px;
+  height: 24px;
+}
+
+.tab_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  h3 {
+    color: white;
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: bold;
+    margin: 0px;
+    text-align: center;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+    background: $primaryColor2;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: content-box;
+  }
+  .save_button {
+    outline: none;
+    height: 30px;
+    text-align: center;
+    width: 100px;
+    border-radius: 40px;
+    background: $primaryColor1;
+    border: 2px solid $accentColor1;
+    color: $accentColor1;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font: {
+      size: 12px;
+      weight: bold;
+    }
+    cursor: pointer;
+    transition: all 0.25s ease;
+    &:hover {
+      color: white;
+      background: $accentColor1;
+    }
+    &:active {
+      letter-spacing: 2px;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.alert_wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    span {
+      color: #991b1b;
+    }
+    svg {
+      stroke: #991b1b;
+    }
+  }
+  span {
+    display: block;
+    color: #ef4444;
+  }
+}

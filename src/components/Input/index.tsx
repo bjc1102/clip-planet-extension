@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Input.scss";
+import "./index.scss";
 
 interface InputProps {
   handleAPI_KEY: (key: string) => void;
@@ -12,14 +12,9 @@ const Input = ({ handleAPI_KEY }: InputProps) => {
   }
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    chrome.storage.local
-      .set({ API_KEY: key })
-      .then(() => {
-        handleAPI_KEY(key);
-      })
-      .catch(() => {
-        alert("저장 중 에러가 발생했습니다.");
-      });
+    chrome.storage.local.set({ API_KEY: key }).then(() => {
+      handleAPI_KEY(key);
+    });
   }
 
   return (

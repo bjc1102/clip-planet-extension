@@ -17,18 +17,21 @@
     "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
   },
   "dependencies": {
+    "axios": "^1.2.4",
     "css-loader": "^6.7.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1"
+    "style-loader": "^3.3.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "@types/chrome": "0.0.158",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/valid-url": "^1.0.3",
     "copy-webpack-plugin": "^9.0.1",
     "glob": "^7.1.6",
     "jest": "^27.2.1",
