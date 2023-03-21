@@ -15,7 +15,7 @@
     "128": "icon128.png"
   },
 
-  "permissions": ["storage"],
+  "permissions": ["storage", "https://clip-planet.site/api/sites"],
 
   "host_permissions": ["<all_urls>"]
 }
