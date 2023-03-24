@@ -1,13 +1,9 @@
 {
   "manifest_version": 3,
 
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
+  "name": "Clip-planet",
+  "description": "Web Clipper for Chrome Browser",
   "version": "1.0",
-
-  "options_ui": {
-    "page": "options.html"
-  },
 
   "action": {
     "default_popup": "popup.html",
@@ -18,11 +14,8 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "background": {
-    "service_worker": "js/background.js"
-  },
 
-  "permissions": ["storage"],
+  "permissions": ["storage", "https://clip-planet.site/api/sites"],
 
   "host_permissions": ["<all_urls>"]
 }
