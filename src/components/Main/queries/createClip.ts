@@ -2,14 +2,18 @@ import axios from "axios";
 import { baseURL } from "../../../constants/default";
 import CurrentTab from "../../../types/tab";
 
-const createClip = (API_KEY: string, siteURL: string) =>
+interface CreateClipProps {
+  API_KEY: string;
+  ogUrl: string;
+  ogTitle: string;
+  favicon: string;
+}
+
+const createClip = (data: CreateClipProps) =>
   async function () {
     const result = await axios.post<CurrentTab>(
       `${baseURL}/set/extension/clip`,
-      {
-        api_key: API_KEY,
-        siteURL: siteURL,
-      }
+      data
     );
     return result.data;
   };

@@ -17,12 +17,17 @@ interface MainProps {
 
 const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
   const [currentTab, setCurrentTab] = React.useState<CurrentTab>({
-    title: "",
-    currentUrl: "",
+    ogTitle: "",
+    ogUrl: "",
     favicon: "",
   });
   const { state, refetch } = useAsync<CurrentTab>({
-    callback: createClip(API_KEY, currentTab.currentUrl),
+    callback: createClip({
+      API_KEY,
+      ogTitle: currentTab.ogTitle,
+      favicon: currentTab.favicon,
+      ogUrl: currentTab.ogUrl,
+    }),
     deps: [],
     skip: true,
   });
@@ -36,14 +41,14 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
   React.useEffect(() => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       setCurrentTab({
-        title: tabs[0].title ?? "",
-        currentUrl: tabs[0].url ?? "",
+        ogTitle: tabs[0].title ?? "",
+        ogUrl: tabs[0].url ?? "",
         favicon: tabs[0].favIconUrl ?? "",
       });
     });
   }, []);
 
-  if (!currentTab.currentUrl)
+  if (!currentTab.ogTitle)
     return (
       <>
         <div className="icon_wrapper">
@@ -69,7 +74,7 @@ const Main = ({ API_KEY, handleAPI_KEY }: MainProps) => {
             <PlanetIcon />
           </div>
         )}
-        <h3>{currentTab.title}</h3>
+        <h3>{currentTab.ogTitle}</h3>
         <div>
           <ClipSubmitButton ApiState={state} handleSubmit={refetch} />
         </div>

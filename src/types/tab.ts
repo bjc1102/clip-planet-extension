@@ -1,6 +1,6 @@
 interface CurrentTab {
-  title: string;
-  currentUrl: string;
+  ogTitle: string;
+  ogUrl: string;
   favicon: string;
 }
 
