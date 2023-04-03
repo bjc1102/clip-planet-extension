@@ -5,8 +5,8 @@
 - Chrome extension API를 활용하여 현재 chrome tab의 사이트 정보 추출
 - 사이트 meta 데이터를 통한 사이트 정보 저장
 
-## 아이콘
-![icon128](https://user-images.githubusercontent.com/71929440/229496319-c39449e7-d404-486c-b4c7-be3dd9b2fd05.png)
+## Description
+방문한 블로그들을 조금 더 간단하게 추가하고 자주 방문할 수 있도록 관리하는 서비스를 개발해보고자 생각했습니다. Notion Web Clipper, 크롬의 북마크와 같이 웹사이트 정보를 저장, 관리할 수 있도록 하는 프로젝트의 크롬 확장도구입니다.
 
 ## 사용 이미지
 <img width="364" alt="clip-planet2" src="https://user-images.githubusercontent.com/71929440/229493057-c0dfe2c3-544e-40ab-92a3-45eedeb97348.png">
