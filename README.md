@@ -21,9 +21,9 @@ Chrome Extension, TypeScript and React
 
 ## Tech Stack
 
-Boilerplate: chrome-extension-typescript-starter with React
-CSS: SCSS
-Bundling tool: Webpack
+Boilerplate: chrome-extension-typescript-starter with React <br/>
+CSS: SCSS <br/>
+Bundling tool: Webpack <br/>
 
 ## Project Structure
 
