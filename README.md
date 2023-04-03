@@ -38,10 +38,6 @@ Bundling tool: Webpack
 npm install
 ```
 
-## Import as Visual Studio Code project
-
-...
-
 ## Build
 
 ```
