@@ -15,9 +15,9 @@
 
 ## Chrome Extension TypeScript Starter를 활용하였습니다.
 
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
+[Boilerplate](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
 
-Chrome Extension, TypeScript and Visual Studio Code
+Chrome Extension, TypeScript and React
 
 ## Tech Stack
 
